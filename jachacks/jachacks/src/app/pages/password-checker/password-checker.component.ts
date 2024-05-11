@@ -20,7 +20,7 @@ export class PasswordCheckerComponent implements OnInit {
   password: string = '';
   analyseState: PasswordAnalyseState = PasswordAnalyseState.NotAnalyzed;
 
-  private readonly availableWidth: Array<string> = [
+  private readonly availableWidth: Array<string> = [ s
     "translate-x-0%",
     "translate-x-10%",
     "translate-x-20%",

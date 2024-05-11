@@ -34,15 +34,17 @@ export class PasswordCheckerComponent implements OnInit {
   }
 
   async changePassword() {
-    this.analyseState = PasswordAnalyseState.Analyzing;
-    this.transform = this.availableWidth[this.availableWidth.length - 1];
-    this.analysis = {
-      gptDegreeOfDanger: 9,
-      gptRecommandation: '',
-      hasRockYouMatch: this.getRockYouMatch()
-    };
+    if (this.password) {
+      this.analyseState = PasswordAnalyseState.Analyzing;
+      this.transform = this.availableWidth[this.availableWidth.length - 1];
+      this.analysis = {
+        gptDegreeOfDanger: 9,
+        gptRecommandation: '',
+        hasRockYouMatch: this.getRockYouMatch()
+      };
 
-    this.analyseState = PasswordAnalyseState.Analyzed;
+      this.analyseState = PasswordAnalyseState.Analyzed;
+    }
   }
 
   getRockYouMatch(): boolean {

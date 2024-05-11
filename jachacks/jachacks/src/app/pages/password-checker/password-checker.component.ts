@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormsModule} from "@angular/forms";
+import rockyou from '../../../assets/rockyou.json';
 
 @Component({
   selector: 'app-password-checker',
@@ -18,7 +19,7 @@ export class PasswordCheckerComponent {
     this.showPassword = !this.showPassword;
   }
 
-  setPassword(password: string) {
-    this.password = password;
+  changePassword() {
+    console.log(this.password);
   }
 }

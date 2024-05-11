@@ -1,2 +1,16 @@
-<app-navbar></app-navbar>
+<nav id="main-nav">
+  <div class="btn-wrapper">
+    <a routerLink="/" [ngClass]="{ active: route == Routes.HOME }"> Home </a>
+    <a routerLink="/" [ngClass]="{ active: route == Routes.PASSWORD }">
+      Password checker
+    </a>
+    <a routerLink="/" [ngClass]="{ active: route == Routes.PHISHING }">
+      Phishing detector
+    </a>
+    <a routerLink="/" [ngClass]="{ active: route == Routes.CODE }">
+      Code analyzer
+    </a>
+  </div>
+</nav>
+
 <router-outlet></router-outlet>

@@ -1,0 +1,64 @@
+@import "../styles.scss";
+
+#main-nav {
+  height: $nav-height;
+
+  .logo {
+    height: 80%;
+    margin: auto;
+  }
+
+  .btn-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 60%;
+    margin-inline: auto;
+
+    a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1em;
+      color: $text;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        &::after {
+          background-color: $primary;
+        }
+      }
+
+      &.active {
+        color: $primary;
+      }
+
+      &::after {
+        transition: all 0.2s;
+        content: "";
+        position: absolute;
+        display: block;
+        width: 90%;
+        height: 5px;
+        border-radius: 2px;
+        background-color: none;
+        bottom: 0;
+        left: 5%;
+      }
+    }
+  }
+}
+
+#content-wrapper {
+  width: 60%;
+  margin-inline: auto;
+  margin-top: 2em;
+}

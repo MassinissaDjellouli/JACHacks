@@ -1,0 +1,84 @@
+@import "../../../styles.scss";
+
+.wrapper {
+  position: relative;
+
+  .icon {
+    fill: $text-light;
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    display: block;
+    top: 50%;
+    translate: 0 -50%;
+
+    &.search {
+      left: 1em;
+    }
+
+    &.show-password {
+      cursor: pointer;
+      right: 1em;
+      transition: fill 0.2s;
+      width: 2.25em;
+      height: 2.25em;
+      padding: 0.25em;
+
+      &:hover {
+        fill: $primary;
+      }
+    }
+  }
+
+  input {
+    border: $border-light;
+    border-radius: 2em;
+    height: 50px;
+    line-height: normal;
+    color: $text;
+    background-color: transparent;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    user-select: auto;
+    padding-left: 3em;
+    padding-right: 1.5em;
+
+    &.password {
+      padding-right: 3.5em;
+    }
+
+    &:focus {
+      outline: none;
+      border: $border-primary;
+    }
+  }
+
+  ::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: $text-light;
+  }
+  :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: $text-light;
+    opacity: 1;
+  }
+  ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: $text-light;
+    opacity: 1;
+  }
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: $text-light;
+  }
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: $text-light;
+  }
+
+  ::placeholder {
+    /* Most modern browsers support this now. */
+    color: $text-light;
+  }
+}

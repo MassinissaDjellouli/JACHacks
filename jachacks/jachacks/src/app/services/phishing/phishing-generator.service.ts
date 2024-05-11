@@ -4,7 +4,7 @@ import { ChatGPTService } from '../chatgpt/chat-gpt.service';
 @Injectable({
   providedIn: 'root'
 })
-export class VulnDetectorService {
+export class PhishingGeneratorService {
 
   constructor(private chatGPTService:ChatGPTService) { }
 }

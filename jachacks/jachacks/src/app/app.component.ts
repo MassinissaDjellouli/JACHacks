@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
-
+import { ChatGPTService } from './services/chatgpt/chat-gpt.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -12,4 +12,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 })
 export class AppComponent {
   title = 'jachacks';
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
 }

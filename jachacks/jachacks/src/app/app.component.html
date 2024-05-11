@@ -1,22 +1,27 @@
 <nav id="main-nav">
   <div class="btn-wrapper">
-    <a routerLink="/" [ngClass]="{ active: route == Routes.HOME }"> Home </a>
-    <a routerLink="/" [ngClass]="{ active: route == Routes.PASSWORD }">
+    <a [routerLink]="Routes.HOME" [ngClass]="{ active: route == Routes.HOME }">
+      Home
+    </a>
+    <a
+      [routerLink]="Routes.PASSWORD"
+      [ngClass]="{ active: route == Routes.PASSWORD }"
+    >
       Password checker
     </a>
     <a
-      routerLink="phishing/detect"
+      [routerLink]="Routes.DETECT_PHISHING"
       [ngClass]="{ active: route == Routes.DETECT_PHISHING }"
     >
       Phishing detector
     </a>
     <a
-      routerLink="phishing/create"
+      [routerLink]="Routes.CREATE_PHISHING"
       [ngClass]="{ active: route == Routes.CREATE_PHISHING }"
     >
       Phishing creator
     </a>
-    <a routerLink="/" [ngClass]="{ active: route == Routes.CODE }">
+    <a [routerLink]="Routes.CODE" [ngClass]="{ active: route == Routes.CODE }">
       Code analyzer
     </a>
   </div>

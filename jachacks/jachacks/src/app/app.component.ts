@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChatGPTService } from './services/chatgpt/chat-gpt.service';
 
@@ -15,7 +15,7 @@ enum Routes {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, NavbarComponent],
+  imports: [RouterOutlet, RouterModule, CommonModule, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

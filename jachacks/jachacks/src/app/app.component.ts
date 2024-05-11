@@ -12,9 +12,4 @@ import { ChatGPTService } from './services/chatgpt/chat-gpt.service';
 })
 export class AppComponent {
   title = 'jachacks';
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 }

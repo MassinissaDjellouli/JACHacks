@@ -1,7 +1,7 @@
 <div>
   <h1 class="text-3xl text-center">Phishing Detector</h1>
   <button class="w-48 bg-amber-600 rounded mt-1 mb-4" (click)="switchMode()" [disabled]="phishingAnalyseState === PhishingAnalyseState.Analyzing">
-    @if(mode === PhishingAnalyseMode.Manual) {
+    @if(mode === PhishingAnalyseMode.File) {
       Enter the information
     } @else {
       Upload a .eml file

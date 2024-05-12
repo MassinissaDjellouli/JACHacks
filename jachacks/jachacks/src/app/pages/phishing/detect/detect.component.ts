@@ -33,6 +33,8 @@ export class PhishingDetectComponent {
     } else {
       this.mode = PhishingAnalyseMode.Manual;
     }
+    this.res = undefined;
+    this.phishingAnalyseState = PhishingAnalyseState.NotAnalyzed;
   }
 
   public detectPhishing = () => {

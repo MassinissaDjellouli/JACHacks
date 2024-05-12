@@ -3,19 +3,26 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChatGPTService } from './services/chatgpt/chat-gpt.service';
+import { InputComponent } from './components/input/input.component';
 
 enum Routes {
   HOME = '',
   PASSWORD = 'password',
   DETECT_PHISHING = 'phishing/detect',
   CREATE_PHISHING = 'phishing/create',
-  CODE = 'code',
+  CODE_ANALYZER = 'code-analyzer',
 }
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, CommonModule, NavbarComponent],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    CommonModule,
+    NavbarComponent,
+    InputComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

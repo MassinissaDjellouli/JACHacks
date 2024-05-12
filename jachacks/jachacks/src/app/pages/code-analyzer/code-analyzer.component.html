@@ -1,0 +1,28 @@
+<h1 class="text-4xl text-center mb-5">Code analyzer</h1>
+<app-input
+  [placeholder]="'Enter your code here'"
+  type="multiline"
+  (onTextChanged)="onTextChanged($event)"
+></app-input>
+<button
+  class="bg-red-500 px-40 py-1 rounded-2xl mt-3 mx-auto d"
+  (click)="analyzeCode()"
+>
+  Analyze
+</button>
+
+<h1 class="text-4xl text-center my-5">Analysis</h1>
+@for (paragraph of analysis; track paragraph) {
+<p class="mb-4 text-justify" [innerHTML]="paragraph.replace('\n', '<br>')"></p>
+}
+
+<!-- <pre>
+#include <stdio.h>
+
+int main() {
+  char last_name[20];
+  printf ("Enter your last name: ");
+  scanf ("%s", last_name);
+  return 0;
+}
+</pre> -->

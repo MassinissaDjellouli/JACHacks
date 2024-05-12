@@ -36,6 +36,26 @@ export class ChatGPTService {
       return msg;
     }
   }
+  public sendPromptSemiRaw = async (prompt:string, delimiter:string="=",answerFormat:string="answer"+delimiter+"ANSWER"): Promise<string[]> => {
+    const res = await this.reqService.post<ChatGPTResponse>("https://api.openai.com/v1/chat/completions",{
+      model:"gpt-3.5-turbo",
+      messages:[
+        {
+          role:"system",
+          content:"You are a cybersecurity expert. You will give answers according to the AnswerFormat sent in the user prompt"
+        },
+        {
+          role:"user",
+          content:"AnswerFormat:" + answerFormat + "\n\nPrompt:\n\n" + prompt
+        }
+      ]
+    },`Bearer ${environment.API_KEY}`);
+    let msg = res.choices[0].message.content;
+    console.log(msg);
+    
+    return msg.split(delimiter);
+}
+
 
   public sendPromptRaw = async (prompt:string, delimiter:string="=",answerFormat:string="answer"+delimiter+"ANSWER"): Promise<ChatGPTResponse> => {
     return await this.reqService.post<ChatGPTResponse>("https://api.openai.com/v1/chat/completions",{

@@ -9,7 +9,6 @@ export class PhishingGeneratorService {
   constructor(private chatGPTService:ChatGPTService) { 
   }
 
-
   async sendGPTRequest(sender: string, recepient: string, strategy: string) : Promise <string> {
     let response:string = await this.chatGPTService.sendPrompt(this.getRequestTemplate(sender, recepient, strategy));
     console.log(response)

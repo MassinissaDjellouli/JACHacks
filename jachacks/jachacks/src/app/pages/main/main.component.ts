@@ -4,7 +4,7 @@ import { RandomtipComponent } from '../../components/randomtip/randomtip.compone
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [RandomtipComponent],
+  imports: [],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })

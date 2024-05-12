@@ -28,14 +28,13 @@ export class PhishingCreateComponent {
     });
   };
 
-  private async request(): Promise<void> {
-    this.response = (
-      await this.PhishingGeneratorService.sendGPTRequest(
-        this.sender,
-        this.recepient,
-        this.strategy
-      )
-    ).split('\n');
+  private async request() : Promise<void> {
+    let res = (await this.PhishingGeneratorService.sendGPTRequest(this.sender, this.recepient, this.strategy))
+    if(res.startsWith("```"))
+      res = res.substring(3, res.length - 3);
+    if(res.endsWith("```"))
+      res = res.substring(0, res.length - 3);
+    this.response = res.split("\n");
   }
 
   public getResponse(): string[] {

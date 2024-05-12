@@ -33,7 +33,7 @@
     </div>
     @if(reportGenerateState === ReportGenerateState.Generated) {
       <section class="flex flex-col mx-10 mb-4">
-        <label id="lbl">
+        <label id="lbl" class="mt-10">
             <markdown [data]="getResponse()"></markdown>
         </label>
       </section>

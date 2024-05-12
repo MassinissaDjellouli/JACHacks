@@ -28,7 +28,11 @@ export class ReportGeneratorComponent {
   }
 
   private async request() : Promise<void> {
-    this.response = (await this.reportGeneratorService.sendGPTRequest(this.reportType, this.content, this.twist));
+    this.response = (await this.reportGeneratorService.sendGPTRequest(this.reportType, this.content, this.twist))
+    if(this.response.startsWith("```"))
+      this.response = this.response.substring(3, this.response.length - 3);
+    if(this.response.endsWith("```"))
+      this.response = this.response.substring(0, this.response.length - 3);
   }
 
   public getResponse(): string {

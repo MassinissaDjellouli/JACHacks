@@ -11,9 +11,9 @@
   Analyze
 </button>
 
-<h1 class="text-4xl text-center my-5">Analysis</h1>
-@for (paragraph of analysis; track paragraph) {
-<p class="mb-4 text-justify" [innerHTML]="paragraph.replace('\n', '<br>')"></p>
+@if(analysis) {
+  <h1 class="text-4xl text-center my-5">Analysis</h1>
+  <markdown [data]="analysis"></markdown>
 }
 
 <!-- <pre>

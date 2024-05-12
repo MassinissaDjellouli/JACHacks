@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
+
+h1 {
+  @apply text-4xl;
+}
+
 @tailwind utilities;
 
 /* To use the variables from this stylesheet, use @import "src/styles.scss"; */

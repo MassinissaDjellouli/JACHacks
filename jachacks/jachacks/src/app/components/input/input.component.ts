@@ -10,8 +10,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class InputComponent implements OnInit {
   @Input() placeholder: string = 'Enter text here...';
-  @Input() type: 'text' | 'password' | 'email' = 'text'; // original type
+  @Input() type: 'text' | 'password' | 'email' | 'multiline' = 'text'; // original type
   currentType!: string; // current type
+  @Input() rows: string = '10';
   @Output() onTextChanged = new EventEmitter<string>();
 
   ngOnInit() {

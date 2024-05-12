@@ -30,7 +30,8 @@
     }
   }
 
-  input {
+  input,
+  textarea {
     border: $border-light;
     border-radius: 2em;
     height: 50px;
@@ -41,8 +42,8 @@
     width: 100%;
     box-sizing: border-box;
     user-select: auto;
-    padding-left: 3em;
-    padding-right: 1.5em;
+    padding-inline: 1.5em;
+    transition: border 0.1s;
 
     &.password {
       padding-right: 3.5em;
@@ -52,6 +53,12 @@
       outline: none;
       border: $border-primary;
     }
+  }
+
+  textarea {
+    height: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
   }
 
   ::-webkit-input-placeholder {

@@ -47,12 +47,10 @@ export class PhishingDetectorService {
     let prompt = "What is the likelyhood of this email message being a phishing attempt? Give a phishingscore going from 0 to 5, with 0 being 100% safe, and 5 being 100% phishing. Give your reasonning as a bullet list with each element of the list separated with |\n\n from:" + from + "\n\nto:" + to + "\n\nobject:" + object + "\n\nmail:" + mail;
 
     let res = await this.sendPrompt(prompt);
-    console.log(res);
     return res;
   }
   private sendPrompt = async (prompt:string): Promise<PhishingDetectorResult> => {
     let answer = await this.chatGPTService.sendPromptSemiRaw(prompt,"&&&","phishingscore=SCORE&&&reasonning=REASONNING");
-    console.log(answer);
     
     let score = answer[0].split("phishingscore=")[1];
     let reasonning = answer[1].split("reasonning=")[1].replaceAll("|","\n- ").trim();

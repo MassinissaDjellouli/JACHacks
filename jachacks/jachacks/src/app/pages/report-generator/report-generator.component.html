@@ -1,47 +1,60 @@
 <div>
-    <h1 class="text-3xl text-center">Security Report Creator</h1>
-    <section class="flex flex-col mx-10 mb-4">
-      <label class="mt-6">
-        Report Type
-      </label>
-      <div class="w-full h-8 flex flex-row">
-        <app-input type="text" placeholder="SOC, SOC2, SOC3, Incident, Vulnerability Assessement" (onTextChanged)="reportType = $event"
-                   class="w-full" />
-      </div>
-    </section>
-    <section class="flex flex-col mx-10 mb-4">
-      <label class="mt-6">
-        Information
-      </label>
-      <div class="w-full flex flex-row">
-        <app-input type="multiline" placeholder="Enter important information" (onTextChanged)="content = $event"
-                   class="w-full" />
-      </div>
-    </section>
-    <section class="flex flex-col mx-10 mb-4">
-      <label>
-        Twist
-      </label>
-      <div class="w-full h-8 flex flex-row">
-        <app-input type="text" placeholder="Positive/Negative twist" (onTextChanged)="twist = $event" class="w-full" />
-      </div>
-    </section>
-    <div class="flex flex-row">
-      <button (click)="click()" [disabled]="reportGenerateState === ReportGenerateState.Generating" class="w-48 bg-amber-600 rounded mt-1">
-        Generate
-      </button>
+  <h1 class="text-center">Security Report Generator</h1>
+  <section class="flex flex-col mx-10 mb-4">
+    <div class="w-full h-8 flex flex-row">
+      <app-input
+        label="Report Type"
+        type="text"
+        placeholder="SOC, SOC2, SOC3, Incident, Vulnerability Assessement..."
+        (onTextChanged)="reportType = $event"
+        class="w-full"
+      />
     </div>
-    @if(reportGenerateState === ReportGenerateState.Generated) {
-      <section class="flex flex-col mx-10 mb-4">
-        <label id="lbl" class="mt-10">
-            <markdown [data]="getResponse()"></markdown>
-        </label>
-      </section>
-    } @else if (reportGenerateState === ReportGenerateState.Generating) {
-      <div class="w-20 h-20 rounded-[50%] loader mx-auto mt-8">
-  
-      </div>
-    }
-  
+  </section>
+
+  <div class="h-10"></div>
+
+  <section class="flex flex-col mx-10 mb-4">
+    <div class="w-full flex flex-row">
+      <app-input
+        label="Information"
+        type="multiline"
+        placeholder="Enter important information"
+        (onTextChanged)="content = $event"
+        class="w-full"
+      />
+    </div>
+  </section>
+
+  <div class="h-6"></div>
+
+  <section class="flex flex-col mx-10 mb-4">
+    <div class="w-full h-8 flex flex-row">
+      <app-input
+        label="Twist"
+        type="text"
+        placeholder="Positive / Negative twist"
+        (onTextChanged)="twist = $event"
+        class="w-full"
+      />
+    </div>
+  </section>
+
+  <div class="flex flex-row">
+    <app-button
+      (click)="click()"
+      class="w-96 mx-auto block mt-8"
+      [disabled]="reportGenerateState === ReportGenerateState.Generating"
+      label="Generate report"
+    ></app-button>
   </div>
-  
+  @if(reportGenerateState === ReportGenerateState.Generated) {
+  <section class="flex flex-col mx-10 mb-4">
+    <label id="lbl" class="mt-10">
+      <markdown [data]="getResponse()"></markdown>
+    </label>
+  </section>
+  } @else if (reportGenerateState === ReportGenerateState.Generating) {
+  <div class="w-20 h-20 rounded-[50%] loader mx-auto mt-8"></div>
+  }
+</div>

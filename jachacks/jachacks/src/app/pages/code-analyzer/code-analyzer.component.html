@@ -1,18 +1,22 @@
 <h1 class="text-center">Code Analyzer</h1>
-<app-input
-  [placeholder]="'Enter your code here'"
-  type="multiline"
-  (onTextChanged)="onTextChanged($event)"
-></app-input>
+<div class="mx-10">
+  <app-input
+    [placeholder]="'Enter your code here'"
+    type="multiline"
+    (onTextChanged)="onTextChanged($event)"
+  ></app-input>
+</div>
 
 <div class="h-12"></div>
 
-<app-button
-  (click)="analyzeCode()"
-  class="w-96 mx-auto"
-  [disabled]="codeAnalyseState === CodeAnalyseState.Analyzing"
-  label="Run the analysis"
-></app-button>
+<div class="w-96 mx-auto">
+  <app-button
+    (click)="analyzeCode()"
+    class=""
+    [disabled]="codeAnalyseState === CodeAnalyseState.Analyzing"
+    label="Run the analysis"
+  ></app-button>
+</div>
 
 @if(codeAnalyseState === CodeAnalyseState.Analyzed) {
 <h1 class="">Analysis</h1>

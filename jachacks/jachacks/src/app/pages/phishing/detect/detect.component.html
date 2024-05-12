@@ -1,6 +1,6 @@
 <div>
   <h1 class="text-center">Phishing Detector</h1>
-  <div class="w-fit flex flex-row items-center mt-8 mb-4 select-none">
+  <div class="w-fit flex flex-row items-center mt-8 mb-4 select-none mx-10">
     <label class="switch">
       <input
         type="checkbox"
@@ -15,7 +15,7 @@
   <div class="h-6"></div>
 
   @if (mode === PhishingAnalyseMode.Manual) {
-  <section class="flex flex-col mb-8">
+  <section class="flex flex-col mb-8 mx-10">
     <div class="w-full h-8 flex flex-row">
       <app-input
         label="Sender"
@@ -29,7 +29,7 @@
 
   <div class="h-6"></div>
 
-  <section class="flex flex-col mb-8">
+  <section class="flex flex-col mb-8 mx-10">
     <div class="w-full h-8 flex flex-row">
       <app-input
         label="Receiver"
@@ -43,12 +43,12 @@
 
   <div class="h-6"></div>
 
-  <section class="flex flex-col mb-8">
+  <section class="flex flex-col mb-8 mx-10">
     <div class="w-full h-8 flex flex-row">
       <app-input
         label="Subject"
         type="text"
-        placeholder="Enter Subject"
+        placeholder="Enter subject"
         (onTextChanged)="subject = $event"
         class="w-full"
       />
@@ -57,7 +57,7 @@
 
   <div class="h-6"></div>
 
-  <section class="flex flex-col">
+  <section class="flex flex-col mx-10">
     <div class="w-full flex flex-row">
       <app-input
         label="Email"
@@ -69,7 +69,7 @@
     </div>
   </section>
   }@else {
-  <section class="flex flex-col">
+  <section class="flex flex-col mx-10">
     <!-- <label class="" for="annoyingaf"> Upload a .eml file </label> -->
     <input
       #annoying

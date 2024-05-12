@@ -9,6 +9,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrl: './input.component.scss',
 })
 export class InputComponent implements OnInit {
+  @Input() label!: string;
   @Input() placeholder: string = 'Enter text here...';
   @Input() type: 'text' | 'password' | 'email' | 'multiline' = 'text'; // original type
   currentType!: string; // current type

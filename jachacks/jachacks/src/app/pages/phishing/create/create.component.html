@@ -1,9 +1,9 @@
 <div>
-  <h1 class="text-3xl text-center">Phishing Email Creator</h1>
+  <h1 class="text-center">Phishing Email Creator</h1>
   <section class="flex flex-col mb-8">
-    <label> Sender </label>
     <div class="w-full h-8 flex flex-row">
       <app-input
+        label="Sender"
         type="email"
         placeholder="Enter sender email here"
         (onTextChanged)="sender = $event"
@@ -11,10 +11,13 @@
       />
     </div>
   </section>
+
+  <div class="h-6"></div>
+
   <section class="flex flex-col mb-8">
-    <label> Receiver </label>
     <div class="w-full h-8 flex flex-row">
       <app-input
+        label="Receiver"
         type="email"
         placeholder="Enter receiver email here"
         (onTextChanged)="recepient = $event"
@@ -22,10 +25,13 @@
       />
     </div>
   </section>
+
+  <div class="h-6"></div>
+
   <section class="flex flex-col mb-4">
-    <label> Strategy </label>
     <div class="w-full h-8 flex flex-row">
       <app-input
+        label="Strategy"
         type="text"
         placeholder="Enter Subject"
         (onTextChanged)="strategy = $event"

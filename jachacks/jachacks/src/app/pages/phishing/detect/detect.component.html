@@ -1,5 +1,5 @@
 <div>
-  <h1 class="text-3xl text-center">Phishing Detector</h1>
+  <h1 class="text-center">Phishing Detector</h1>
   <div class="w-fit flex flex-row items-center mt-8 mb-4 select-none">
     <label class="switch">
       <input
@@ -12,11 +12,13 @@
     <span class="h-fit ml-2">Upload a .eml file</span>
   </div>
 
+  <div class="h-6"></div>
+
   @if (mode === PhishingAnalyseMode.Manual) {
   <section class="flex flex-col mb-8">
-    <label class="text-2xl"> Sender </label>
     <div class="w-full h-8 flex flex-row">
       <app-input
+        label="Sender"
         type="email"
         placeholder="Enter sender email here"
         (onTextChanged)="from = $event"
@@ -24,10 +26,13 @@
       />
     </div>
   </section>
+
+  <div class="h-6"></div>
+
   <section class="flex flex-col mb-8">
-    <label class="text-2xl"> Receiver </label>
     <div class="w-full h-8 flex flex-row">
       <app-input
+        label="Receiver"
         type="email"
         placeholder="Enter receiver email here"
         (onTextChanged)="to = $event"
@@ -35,10 +40,13 @@
       />
     </div>
   </section>
+
+  <div class="h-6"></div>
+
   <section class="flex flex-col mb-8">
-    <label class="text-2xl"> Subject </label>
     <div class="w-full h-8 flex flex-row">
       <app-input
+        label="Subject"
         type="text"
         placeholder="Enter Subject"
         (onTextChanged)="subject = $event"
@@ -46,10 +54,13 @@
       />
     </div>
   </section>
+
+  <div class="h-6"></div>
+
   <section class="flex flex-col">
-    <label class="text-2xl"> Email </label>
     <div class="w-full flex flex-row">
       <app-input
+        label="Email"
         type="multiline"
         placeholder="Enter email content here"
         (onTextChanged)="body = $event"

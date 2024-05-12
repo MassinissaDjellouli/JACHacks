@@ -21,7 +21,7 @@ export class PasswordCheckerService {
     console.log(scoreResponse);
     
     return {
-      gptDegreeOfDanger: 10 - Math.min(10, Math.max(1, parseInt(scoreResponse) - (hasRockYouMatch ? 2 : 0))),
+      gptDegreeOfDanger: 10 - Math.min(10, Math.max(1, parseInt(scoreResponse) - (hasRockYouMatch ? 2 : (password.length > 12 ? -2 : 0)))),
       gptRecommandation: recommandationResponse.replace(password, '########').replace("ANSWER:", ""),
       hasRockYouMatch: hasRockYouMatch
     };

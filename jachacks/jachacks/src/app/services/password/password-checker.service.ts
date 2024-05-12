@@ -13,15 +13,16 @@ export class PasswordCheckerService {
   public async checkPassword(password:string): Promise<PasswordAnalysis> {
     const scorePrompt = `Given this password ("${password}"), please provide a score and a recommendation for its strength. The score should be a number between 1 and 10 where 1 is bad and 10 is good.`;
     const recommandationPrompt = `Given this password ("${password}"), please provide a recommendation to improve its strength.`;
-    const scoreResponse = await this.chatGPTService.sendPrompt(scorePrompt);
-    const recommandationResponse = await this.chatGPTService.sendPrompt(recommandationPrompt);
-
-    console.log(scoreResponse, recommandationResponse);
+    const [scoreResponse, recommandationResponse, hasRockYouMatch] = await Promise.all([
+      this.chatGPTService.sendPrompt(scorePrompt),
+      this.chatGPTService.sendPrompt(recommandationPrompt),
+      this.getRockYouMatch(password)
+    ]);
 
     return {
       gptDegreeOfDanger: 10 - Math.min(10, Math.max(1, parseInt(scoreResponse))),
       gptRecommandation: recommandationResponse,
-      hasRockYouMatch: await this.getRockYouMatch(password)
+      hasRockYouMatch: hasRockYouMatch
     };
   }
 

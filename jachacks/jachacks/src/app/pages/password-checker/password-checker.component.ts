@@ -49,12 +49,16 @@ export class PasswordCheckerComponent implements OnInit {
 
   async changePassword() {
     if (this.password) {
-      this.analyseState = PasswordAnalyseState.Analyzing;
-      this.analysis = await this.passwordCheckerService.checkPassword(this.password);
-      this.transform = this.availableWidth[isNaN(this.analysis.gptDegreeOfDanger) ? 9 : this.analysis.gptDegreeOfDanger];
-
-      this.analyseState = PasswordAnalyseState.Analyzed;
+      this.makeApiCalls();
     }
+  }
+
+  async makeApiCalls() {
+    this.analyseState = PasswordAnalyseState.Analyzing;
+    this.analysis = await this.passwordCheckerService.checkPassword(this.password);
+    this.transform = this.availableWidth[isNaN(this.analysis.gptDegreeOfDanger) ? 9 : this.analysis.gptDegreeOfDanger];
+
+    this.analyseState = PasswordAnalyseState.Analyzed;
   }
 
   protected readonly PasswordAnalyseState = PasswordAnalyseState;

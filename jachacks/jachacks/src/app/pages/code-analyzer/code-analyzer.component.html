@@ -5,7 +5,7 @@
   (onTextChanged)="onTextChanged($event)"
 ></app-input>
 <button
-  class="bg-red-500 px-40 py-1 rounded-2xl mt-3 mx-auto d"
+  class="w-full bg-amber-600 rounded mt-1 h-10"
   (click)="analyzeCode()"
   [disabled]="codeAnalyseState === CodeAnalyseState.Analyzing"
 >
@@ -20,14 +20,3 @@
 
   </div>
 }
-
-<!-- <pre>
-#include <stdio.h>
-
-int main() {
-  char last_name[20];
-  printf ("Enter your last name: ");
-  scanf ("%s", last_name);
-  return 0;
-}
-</pre> -->

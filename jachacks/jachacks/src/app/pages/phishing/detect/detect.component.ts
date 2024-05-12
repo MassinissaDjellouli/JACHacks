@@ -4,11 +4,12 @@ import {PhishingDetectorResult} from '../../../types/PhishingDetectorResult';
 import {InputComponent} from '../../../components/input/input.component';
 import {FormsModule} from '@angular/forms';
 import {PhishingAnalyseMode, PhishingAnalyseState} from "../../../types/PhishingAnalyse";
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-phishing-detect',
   standalone: true,
-  imports: [InputComponent,FormsModule],
+  imports: [InputComponent,FormsModule,NgClass],
   templateUrl: './detect.component.html',
   styleUrl: './detect.component.scss'
 })
@@ -25,6 +26,22 @@ export class PhishingDetectComponent {
   res: PhishingDetectorResult | undefined;
   fileError: string = '';
 
+
+  private readonly availableWidth: Array<string> = [
+    "translate-x-0%",
+    "translate-x-10%",
+    "translate-x-20%",
+    "translate-x-30%",
+    "translate-x-40%",
+    "translate-x-50%",
+    "translate-x-60%",
+    "translate-x-70%",
+    "translate-x-80%",
+    "translate-x-90%"
+  ];
+  public transform: string = '';
+  @ViewChild('gradiant') gradiant: ElementRef<HTMLDivElement> | undefined;
+
   phishingAnalyseState: PhishingAnalyseState = PhishingAnalyseState.NotAnalyzed;
 
   public switchMode(){
@@ -33,13 +50,20 @@ export class PhishingDetectComponent {
     } else {
       this.mode = PhishingAnalyseMode.Manual;
     }
+    this.res = undefined;
+    this.phishingAnalyseState = PhishingAnalyseState.NotAnalyzed;
   }
 
   public detectPhishing = () => {
     this.phishingAnalyseState = PhishingAnalyseState.Analyzing;
+    this.fileError = '';
     switch (this.mode){
       case PhishingAnalyseMode.Manual:
-        if (this.from === '' || this.to === '' || this.subject === '' || this.body === '') {
+        const from = this.from;
+        const to = this.to;
+        const subject = this.subject;
+        const body = this.body;
+        if (from === '' || to === '' || subject === '' || body === '') {
           alert('Please fill in all fields!');
           this.phishingAnalyseState = PhishingAnalyseState.NotAnalyzed;
           return;
@@ -63,6 +87,7 @@ export class PhishingDetectComponent {
 
   private async detect(): Promise<void> {
     this.res = await this.phishingDetectorService.detectPhishing(this.from, this.to, this.subject, this.body);
+    this.transform = this.availableWidth[isNaN(this.res.score) ? 9 : (this.res.score * 2) - 1];
   }
 
   public getResReasoning = () => {
@@ -78,12 +103,12 @@ export class PhishingDetectComponent {
       let reader = new FileReader();
       reader.onload = async () => {
         let res = await this.phishingDetectorService.detectPhishingFromSMTP(reader.result as string);
-
         if (typeof res === "string") {
           this.fileError = res;
           this.res = undefined;
         } else {
           this.res = res;
+          this.transform = this.availableWidth[isNaN(this.res.score) ? 9 : (this.res.score * 2) - 1];
           this.fileError = '';
         }
         resolve();

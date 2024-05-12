@@ -1,6 +1,6 @@
 <div>
   <h1 class="text-3xl text-center">Phishing Email Creator</h1>
-  <section class="flex flex-col mx-10 mb-4">
+  <section class="flex flex-col mb-8">
     <label>
       Sender
     </label>
@@ -9,7 +9,7 @@
                  class="w-full" />
     </div>
   </section>
-  <section class="flex flex-col mx-10 mb-4">
+  <section class="flex flex-col mb-8">
     <label>
       Receiver
     </label>
@@ -18,7 +18,7 @@
                  class="w-full" />
     </div>
   </section>
-  <section class="flex flex-col mx-10 mb-4">
+  <section class="flex flex-col mb-8">
     <label>
       Strategy
     </label>
@@ -27,12 +27,12 @@
     </div>
   </section>
   <div class="flex flex-row">
-    <button (click)="click()" class="w-48 bg-amber-600 rounded mt-1" [disabled]="phishingAnalyseState === PhishingAnalyseState.Analyzing">
+    <button (click)="click()" class="w-full bg-amber-600 rounded mt-1 h-10" [disabled]="phishingAnalyseState === PhishingAnalyseState.Analyzing">
       Generate
     </button>
   </div>
   @if(phishingAnalyseState === PhishingAnalyseState.Analyzed) {
-    <section class="flex flex-col mx-10 mb-4">
+    <section class="flex flex-col mb-4">
       <label id="lbl">
         @for(line of getResponse(); track line) {
           <br>{{line}}

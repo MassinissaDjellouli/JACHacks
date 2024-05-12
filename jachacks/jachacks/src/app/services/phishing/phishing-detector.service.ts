@@ -44,14 +44,12 @@ export class PhishingDetectorService {
     let prompt = "What is the likelyhood of this email message being a phishing attempt?\n\n Headers:" + parsed.header + "\n\nBody:" + parsed.body  +"\n\n"+this.prompt;
 
     let res = await this.sendPrompt(prompt);
-    console.log(res);
     return res;
   }
   public detectPhishing = async (from:string,to:string,object:string,mail:string): Promise<PhishingDetectorResult> => {
     let prompt = "What is the likelyhood of this email message being a phishing attempt?\n\n from:" + from + "\n\nto:" + to + "\n\nobject:" + object + "\n\nmail:" + mail +"\n\n" + this.prompt;
 
     let res = await this.sendPrompt(prompt);
-    console.log(res);
     
     return res;
   }

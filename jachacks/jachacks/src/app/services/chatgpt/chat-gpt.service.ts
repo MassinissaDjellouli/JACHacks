@@ -15,7 +15,6 @@ export class ChatGPTService {
       a = ((a << 5) - a) + b.charCodeAt(0);
       return a & a;
     }, 0);
-    console.log(hash);
     return hash;
   }
    

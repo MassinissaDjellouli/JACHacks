@@ -1,5 +1,6 @@
 <nav id="main-nav">
   <div class="btn-wrapper">
+    <a class="title-gradient text-3xl" [routerLink]="Routes.HOME"> B.E.S.T. </a>
     <a [routerLink]="Routes.HOME" [ngClass]="{ active: route == Routes.HOME }">
       Home
     </a>
@@ -7,25 +8,25 @@
       [routerLink]="Routes.PASSWORD"
       [ngClass]="{ active: route == Routes.PASSWORD }"
     >
-      Password checker
+      Password Checker
     </a>
     <a
       [routerLink]="Routes.DETECT_PHISHING"
       [ngClass]="{ active: route == Routes.DETECT_PHISHING }"
     >
-      Phishing detector
+      Phishing Detector
     </a>
     <a
       [routerLink]="Routes.CREATE_PHISHING"
       [ngClass]="{ active: route == Routes.CREATE_PHISHING }"
     >
-      Phishing creator
+      Phishing Creator
     </a>
     <a
       [routerLink]="Routes.CODE_ANALYZER"
       [ngClass]="{ active: route == Routes.CODE_ANALYZER }"
     >
-      Code analyzer
+      Code Analyzer
     </a>
     <a
       [routerLink]="Routes.REPORT_GENERATOR"
@@ -36,6 +37,8 @@
   </div>
 </nav>
 
-<div id="content-wrapper">
+<div [ngClass]="{ 'content-wrapper': route != Routes.HOME }">
   <router-outlet></router-outlet>
 </div>
+
+<div class="gradient"></div>

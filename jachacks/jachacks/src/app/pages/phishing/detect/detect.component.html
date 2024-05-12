@@ -43,7 +43,7 @@
         <label>
             Upload a .eml file
         </label>
-        <input type="file" [(ngModel)]="file" accept=".eml" />
+        <input #annoying type="file" [(ngModel)]="file" accept=".eml" />
     </section>
     }
     <div class="flex flex-row">
@@ -51,4 +51,22 @@
             Run the analysis
         </button>
     </div>
+        @if(res != undefined){
+            <h1 class="text-3xl">Score: {{res.score}}</h1>
+            <h1 class="text-3xl">Reasoning:</h1>
+            <div>
+                @for(item of getResReasoning();track item){
+                    <div class="flex flex-row ">
+                        <br/>{{item}}
+                    </div>
+                }
+            </div>
+        }
+        @if(fileError.length > 0){
+            <div class="flex flex-row">
+                <h1 class="text-3xl text-center">{{fileError}}</h1>
+                <h1 class="text-1xl text-center">An error might indicate that the email is a scam and precautions should be taken.</h1>
+            </div>
+        }
+    
 </div>

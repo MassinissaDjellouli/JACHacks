@@ -16,6 +16,7 @@ export class ChatGPTService {
     const answerFormat = "answer" + delimiter + "ANSWER"
     const res = await this.reqService.post<ChatGPTResponse>("https://api.openai.com/v1/chat/completions",{
       model:"gpt-3.5-turbo",
+      temperature:0.2,
       messages:[
         {
           role:"system",

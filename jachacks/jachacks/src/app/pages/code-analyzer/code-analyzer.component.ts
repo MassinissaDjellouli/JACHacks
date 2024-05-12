@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { InputComponent } from '../../components/input/input.component';
-import { VulnDetectorService } from '../../services/vuln/vuln-detector.service';
+import {Component} from '@angular/core';
+import {InputComponent} from '../../components/input/input.component';
+import {VulnDetectorService} from '../../services/vuln/vuln-detector.service';
 import {MarkdownComponent} from "ngx-markdown";
+import {CodeAnalyseState} from "../../types/CodeAnalyse";
 
 @Component({
   selector: 'app-code-analyzer',
@@ -12,6 +13,7 @@ import {MarkdownComponent} from "ngx-markdown";
 })
 export class CodeAnalyzerComponent {
   private text: string = '';
+  codeAnalyseState: CodeAnalyseState = CodeAnalyseState.NotAnalysed;
   analysis: string = '';
 
   constructor(private vulnDetectorService: VulnDetectorService) {}
@@ -20,12 +22,16 @@ export class CodeAnalyzerComponent {
     this.text = text;
   }
 
-  async analyzeCode() {
-    console.log('Analyzing code: ', this.text);
-    let response = await this.vulnDetectorService.detectVulnerabilities(
-      this.text
-    );
-
-    this.analysis = response;
+  analyzeCode() {
+    this.codeAnalyseState = CodeAnalyseState.Analyzing;
+    this.dataBinding().then(() => {
+      this.codeAnalyseState = CodeAnalyseState.Analyzed;
+    });
   }
+
+  private async dataBinding() {
+    this.analysis = await this.vulnDetectorService.detectVulnerabilities(this.text);
+  }
+
+  protected readonly CodeAnalyseState = CodeAnalyseState;
 }

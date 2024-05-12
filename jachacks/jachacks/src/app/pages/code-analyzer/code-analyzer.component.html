@@ -11,9 +11,13 @@
   Analyze
 </button>
 
-@if(analysis) {
+@if(codeAnalyseState === CodeAnalyseState.Analyzed) {
   <h1 class="text-4xl text-center my-5">Analysis</h1>
   <markdown [data]="analysis"></markdown>
+} @else if (codeAnalyseState === CodeAnalyseState.Analyzing) {
+  <div class="w-20 h-20 rounded-[50%] loader mx-auto mt-8">
+
+  </div>
 }
 
 <!-- <pre>

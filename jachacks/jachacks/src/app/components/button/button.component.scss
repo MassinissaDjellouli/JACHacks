@@ -1,0 +1,27 @@
+@import "../../../styles.scss";
+
+.button {
+  width: 100%;
+  //   border: 2px solid $primary;
+  background-color: $primary;
+  //   background: none;
+  // display: inline-block;
+  text-align: center;
+  padding: 0.5em 3em;
+  border-radius: 1em;
+  transition: background-color 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primary;
+  }
+  &:active {
+    filter: brightness(0.9);
+  }
+
+  &:disabled {
+    background-color: $light-gray;
+    // border-color: $light-gray;
+    cursor: not-allowed;
+  }
+}

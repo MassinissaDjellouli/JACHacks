@@ -6,6 +6,10 @@ h1 {
   @apply text-4xl;
 }
 
+app-button {
+  @apply my-12;
+}
+
 @tailwind utilities;
 
 /* To use the variables from this stylesheet, use @import "src/styles.scss"; */
@@ -19,7 +23,8 @@ $text: white;
 $text-light: #9b9b9b7c;
 $primary: #ffbe00;
 $secondary: #8f0000;
-$border-light: 2px solid #9b9b9b7c;
+$light-gray: #9b9b9b7c;
+$border-light: 2px solid $light-gray;
 $border-primary: 2px solid $primary;
 
 /*

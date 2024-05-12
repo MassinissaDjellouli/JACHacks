@@ -26,7 +26,6 @@ export class RequestsService {
       },
       body: JSON.stringify(body),
     });    
-    console.log(JSON.stringify(body));
     
     const data = await response.json();
     return data;

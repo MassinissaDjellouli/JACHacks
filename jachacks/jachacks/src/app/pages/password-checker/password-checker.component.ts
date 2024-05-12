@@ -1,16 +1,17 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {PasswordAnalyseState, PasswordAnalysis} from "../../types/passwordAnalyse";
-import rockYou from '../../../assets/rockyou.json';
 import {NgClass} from "@angular/common";
 import {PasswordCheckerService} from "../../services/password/password-checker.service";
+import {InputComponent} from "../../components/input/input.component";
 
 @Component({
   selector: 'app-password-checker',
   standalone: true,
   imports: [
     FormsModule,
-    NgClass
+    NgClass,
+    InputComponent
   ],
   templateUrl: './password-checker.component.html',
   styleUrl: './password-checker.component.scss'
@@ -50,14 +51,10 @@ export class PasswordCheckerComponent implements OnInit {
     if (this.password) {
       this.analyseState = PasswordAnalyseState.Analyzing;
       this.analysis = await this.passwordCheckerService.checkPassword(this.password);
-      this.transform = this.availableWidth[isNaN(this.analysis.gptDegreeOfDanger) ? 0 : this.analysis.gptDegreeOfDanger];
+      this.transform = this.availableWidth[isNaN(this.analysis.gptDegreeOfDanger) ? 9 : this.analysis.gptDegreeOfDanger];
 
       this.analyseState = PasswordAnalyseState.Analyzed;
     }
-  }
-
-  getRockYouMatch(): boolean {
-    return rockYou.includes(this.password);
   }
 
   protected readonly PasswordAnalyseState = PasswordAnalyseState;

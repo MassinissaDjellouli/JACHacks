@@ -19,14 +19,27 @@ export class ChatGPTService {
     return hash;
   }
    
-  public sendPrompt = async (prompt:string): Promise<string> => {
+  public sendPrompt = async (prompt:string, seed=true,temperature=0.2): Promise<string> => {
     const delimiter="=";
     const answerFormat = "answer" + delimiter + "ANSWER"
     
-    const res = await this.reqService.post<ChatGPTResponse>("https://api.openai.com/v1/chat/completions",{
+    const res = await this.reqService.post<ChatGPTResponse>("https://api.openai.com/v1/chat/completions",seed?{
       model:"gpt-3.5-turbo",
-      temperature:0.2,
+      temperature:temperature,
       seed:this.hashCode(prompt),
+      messages:[
+        {
+          role:"system",
+          content:"You are a cybersecurity expert. You will give answers according to the AnswerFormat sent in the user prompt"
+        },
+        {
+          role:"user",
+          content:"AnswerFormat:" + answerFormat + "\n\nPrompt:\n\n" + prompt
+        }
+      ]
+    }:{
+      model:"gpt-3.5-turbo",
+      temperature:temperature,
       messages:[
         {
           role:"system",

@@ -1,0 +1,7 @@
+@if (getRandomTip().length > 0) {
+    <h1 class="text-3xl">Random Tip!</h1>
+    <p class="">{{getRandomTip()}}</p>
+    <button (click)="generateRandomTip()" class="w-48 bg-amber-600 rounded mt-1">
+        Get another Tip
+    </button>
+}

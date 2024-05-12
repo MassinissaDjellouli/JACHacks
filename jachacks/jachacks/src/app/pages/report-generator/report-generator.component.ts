@@ -4,7 +4,7 @@ import { ReportGenerateState } from '../../types/ReportGenerate';
 import { PhishingGeneratorService } from '../../services/phishing/phishing-generator.service';
 import { InputComponent } from '../../components/input/input.component';
 import { ReportGeneratorService } from '../../services/reportGenerator/report.service';
-
+import {MarkdownComponent} from "ngx-markdown";
 @Component({
   selector: 'app-report-generator',
   standalone: true,

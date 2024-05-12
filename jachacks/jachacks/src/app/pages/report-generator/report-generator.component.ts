@@ -8,7 +8,7 @@ import { ReportGeneratorService } from '../../services/reportGenerator/report.se
 @Component({
   selector: 'app-report-generator',
   standalone: true,
-  imports: [InputComponent, FormsModule],
+  imports: [InputComponent, FormsModule,MarkdownComponent],
   templateUrl: './report-generator.component.html',
   styleUrl: './report-generator.component.scss'
 })
@@ -17,7 +17,7 @@ export class ReportGeneratorComponent {
   reportType: string = 'incident';
   content: string = 'We got hacked 4 times, and we lost 2 clients because of it.';
   twist: string = 'positive';
-  private response: string[] = []
+  private response: string = ""
   reportGenerateState: ReportGenerateState = ReportGenerateState.NotGenerated;
 
   click = () => {
@@ -28,10 +28,10 @@ export class ReportGeneratorComponent {
   }
 
   private async request() : Promise<void> {
-    this.response = (await this.reportGeneratorService.sendGPTRequest(this.reportType, this.content, this.twist)).split("\n");
+    this.response = (await this.reportGeneratorService.sendGPTRequest(this.reportType, this.content, this.twist));
   }
 
-  public getResponse(): string[] {
+  public getResponse(): string {
     return this.response;
   }
 

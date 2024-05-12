@@ -4,7 +4,8 @@ import { PhishingDetectComponent } from './pages/phishing/detect/detect.componen
 import { PhishingCreateComponent } from './pages/phishing/create/create.component';
 
 export const routes: Routes = [
-    { path: '', component: MainComponent },
-    { path: 'phishing/detect', component: PhishingDetectComponent },
-    { path: 'phishing/create', component:PhishingCreateComponent },
+  { path: '', component: MainComponent },
+  { path: 'phishing/detect', component: PhishingDetectComponent },
+  { path: 'phishing/create', component: PhishingCreateComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' }, // if route doesn't exist
 ];

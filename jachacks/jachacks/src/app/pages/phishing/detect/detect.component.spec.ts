@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DetectComponent } from './detect.component';
+import { PhishingDetectComponent } from './detect.component';
 
-describe('DetectComponent', () => {
-  let component: DetectComponent;
-  let fixture: ComponentFixture<DetectComponent>;
+describe('PhishingDetectComponent', () => {
+  let component: PhishingDetectComponent;
+  let fixture: ComponentFixture<PhishingDetectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DetectComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(DetectComponent);
+      imports: [PhishingDetectComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(PhishingDetectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

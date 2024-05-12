@@ -1,2 +1,32 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<nav id="main-nav">
+  <div class="btn-wrapper">
+    <a [routerLink]="Routes.HOME" [ngClass]="{ active: route == Routes.HOME }">
+      Home
+    </a>
+    <a
+      [routerLink]="Routes.PASSWORD"
+      [ngClass]="{ active: route == Routes.PASSWORD }"
+    >
+      Password checker
+    </a>
+    <a
+      [routerLink]="Routes.DETECT_PHISHING"
+      [ngClass]="{ active: route == Routes.DETECT_PHISHING }"
+    >
+      Phishing detector
+    </a>
+    <a
+      [routerLink]="Routes.CREATE_PHISHING"
+      [ngClass]="{ active: route == Routes.CREATE_PHISHING }"
+    >
+      Phishing creator
+    </a>
+    <a [routerLink]="Routes.CODE" [ngClass]="{ active: route == Routes.CODE }">
+      Code analyzer
+    </a>
+  </div>
+</nav>
+
+<div id="content-wrapper">
+  <router-outlet></router-outlet>
+</div>

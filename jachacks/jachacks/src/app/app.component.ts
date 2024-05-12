@@ -1,15 +1,34 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChatGPTService } from './services/chatgpt/chat-gpt.service';
+
+enum Routes {
+  HOME = '',
+  PASSWORD = 'password',
+  DETECT_PHISHING = 'phishing/detect',
+  CREATE_PHISHING = 'phishing/create',
+  CODE = 'code',
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, RouterModule, CommonModule, NavbarComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'jachacks';
+  title = 'Jachacks';
+
+  constructor(private router: Router) {}
+
+  get route() {
+    return this.router.url.substring(1); // remove leading '/'
+  }
+
+  get Routes() {
+    return Routes;
+  }
 }

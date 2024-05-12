@@ -12,7 +12,7 @@ export class PasswordCheckerService {
 
   public async checkPassword(password:string): Promise<PasswordAnalysis> {
     const scorePrompt = `Given this password ("${password}"), please provide a score and a recommendation for its strength. The score should be a number between 1 and 10 where 1 is bad and 10 is good.`;
-    const recommandationPrompt = `Given this password ("${password}"), please provide a recommendation to improve its strength.`;
+    const recommandationPrompt = `Given this password ("${password}"), please provide a recommendation to improve its strength. Do not show the password.`;
     const [scoreResponse, recommandationResponse, hasRockYouMatch] = await Promise.all([
       this.chatGPTService.sendPrompt(scorePrompt),
       this.chatGPTService.sendPrompt(recommandationPrompt),

@@ -59,7 +59,11 @@ export class PhishingDetectComponent {
     this.fileError = '';
     switch (this.mode){
       case PhishingAnalyseMode.Manual:
-        if (this.from === '' || this.to === '' || this.subject === '' || this.body === '') {
+        const from = this.from;
+        const to = this.to;
+        const subject = this.subject;
+        const body = this.body;
+        if (from === '' || to === '' || subject === '' || body === '') {
           alert('Please fill in all fields!');
           this.phishingAnalyseState = PhishingAnalyseState.NotAnalyzed;
           return;

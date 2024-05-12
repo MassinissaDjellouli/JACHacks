@@ -13,11 +13,12 @@ h1 {
 /*
  * Color variables
  */
-$bg-dark: #222;
+$bg-dark: #0a0617;
 $bg-light: #888;
 $text: white;
 $text-light: #9b9b9b7c;
 $primary: #ffbe00;
+$secondary: #8f0000;
 $border-light: 2px solid #9b9b9b7c;
 $border-primary: 2px solid $primary;
 
@@ -31,17 +32,14 @@ $screen-height: calc(100vh - $nav-height);
   * Global styles
   */
 body {
+  font-family: "Nanum Gothic", sans-serif;
   background-color: $bg-dark;
   color: $text;
 }
 
-.loader {
-  border: 8px solid #f3f3f3; /* Light grey */
-  border-top: 8px solid #3498db; /* Blue */
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.title-gradient {
+  background-image: linear-gradient(to right, $secondary, $primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

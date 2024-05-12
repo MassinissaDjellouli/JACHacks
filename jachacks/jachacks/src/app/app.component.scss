@@ -13,7 +13,7 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    width: 60%;
+    width: 85%;
     margin-inline: auto;
 
     a {
@@ -27,38 +27,81 @@
       color: $text;
       text-decoration: none;
       font-weight: 500;
-      transition: background-color 0.2s;
       cursor: pointer;
+      transition: background-color 0.2s;
 
-      &:hover,
-      &.active {
-        &::after {
-          background-color: $primary;
+      &.title-gradient {
+        width: 60%;
+        align-items: end;
+        padding-bottom: 0.3em;
+        font-weight: 600;
+        user-select: none;
+      }
+
+      &:not(.title-gradient) {
+        &:hover,
+        &.active {
+          &::after {
+            background-color: $primary;
+          }
         }
-      }
 
-      &.active {
-        color: $primary;
-      }
+        &.active {
+          color: $primary;
+        }
 
-      &::after {
-        transition: all 0.2s;
-        content: "";
-        position: absolute;
-        display: block;
-        width: 90%;
-        height: 5px;
-        border-radius: 2px;
-        background-color: none;
-        bottom: 0;
-        left: 5%;
+        &::after {
+          transition: all 0.2s;
+          content: "";
+          position: absolute;
+          display: block;
+          width: 90%;
+          height: 5px;
+          border-radius: 2px;
+          background-color: none;
+          bottom: 0;
+          left: 5%;
+        }
       }
     }
   }
 }
 
-#content-wrapper {
+.content-wrapper {
   width: 60%;
   margin-inline: auto;
   margin-top: 2em;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.gradient {
+  --size: 750px;
+  --speed: 30s;
+  --easing: cubic-bezier(0.6, 0.3, 0.3, 0.6);
+
+  position: fixed;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  translate: -50%, -50%;
+  width: var(--size);
+  height: var(--size);
+  filter: blur(calc(var(--size) * 100));
+  background-image: linear-gradient($secondary, $primary);
+  animation: rotate var(--speed) var(--easing) alternate infinite;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+@media (min-width: 720px) {
+  .gradient {
+    --size: 750px;
+  }
 }

@@ -1,0 +1,6 @@
+@import "../../../styles.scss";
+
+img:not(.logo) {
+  @apply h-72;
+  @apply rounded-3xl;
+}

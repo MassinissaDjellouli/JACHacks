@@ -30,6 +30,18 @@
     }
   }
 
+  label {
+    background-color: $bg-dark;
+    position: absolute;
+    top: -0.75em;
+    left: 1.5em;
+    padding: 0 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $text;
+    cursor: pointer;
+  }
+
   input,
   textarea {
     border: $border-light;

@@ -1,10 +1,13 @@
 @if (getRandomTip().length > 0) {
-    <div class="mb-10">
-
-        <h1 class="text-3xl">Random Tip!</h1>
-        <p class="">{{getRandomTip()}}</p>
-        <button (click)="generateRandomTip()" [disabled]="!isActiveBtn()" class="w-48 bg-amber-600 rounded mt-1">
-            Get another Tip
-        </button>
-    </div>
+<div class="mb-10">
+  <h1 class="text-3xl">Random Tip!</h1>
+  <p class="">{{ getRandomTip() }}</p>
+  <button
+    (click)="generateRandomTip()"
+    [disabled]="!isActiveBtn()"
+    class="w-48 bg-amber-600 rounded mt-1"
+  >
+    Get another Tip
+  </button>
+</div>
 }

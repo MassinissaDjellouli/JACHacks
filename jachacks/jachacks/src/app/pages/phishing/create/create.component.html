@@ -1,48 +1,61 @@
 <div>
-  <h1 class="text-3xl text-center">Phishing Email Creator</h1>
+  <h1 class="text-center">Phishing Email Creator</h1>
   <section class="flex flex-col mb-8">
-    <label>
-      Sender
-    </label>
     <div class="w-full h-8 flex flex-row">
-      <app-input type="email" placeholder="Enter sender email here" (onTextChanged)="sender = $event"
-                 class="w-full" />
+      <app-input
+        label="Sender"
+        type="email"
+        placeholder="Enter sender email here"
+        (onTextChanged)="sender = $event"
+        class="w-full"
+      />
     </div>
   </section>
+
+  <div class="h-6"></div>
+
   <section class="flex flex-col mb-8">
-    <label>
-      Receiver
-    </label>
     <div class="w-full h-8 flex flex-row">
-      <app-input type="email" placeholder="Enter receiver email here" (onTextChanged)="recepient = $event"
-                 class="w-full" />
+      <app-input
+        label="Receiver"
+        type="email"
+        placeholder="Enter receiver email here"
+        (onTextChanged)="recepient = $event"
+        class="w-full"
+      />
     </div>
   </section>
-  <section class="flex flex-col mb-8">
-    <label>
-      Strategy
-    </label>
+
+  <div class="h-6"></div>
+
+  <section class="flex flex-col mb-4">
     <div class="w-full h-8 flex flex-row">
-      <app-input type="text" placeholder="Enter Subject" (onTextChanged)="strategy = $event" class="w-full" />
+      <app-input
+        label="Strategy"
+        type="text"
+        placeholder="Enter Subject"
+        (onTextChanged)="strategy = $event"
+        class="w-full"
+      />
     </div>
   </section>
   <div class="flex flex-row">
-    <button (click)="click()" class="w-full bg-amber-600 rounded mt-1 h-10" [disabled]="phishingAnalyseState === PhishingAnalyseState.Analyzing">
-      Generate
-    </button>
+    <app-button
+      (click)="click()"
+      class="w-96 mx-auto"
+      [disabled]="phishingAnalyseState === PhishingAnalyseState.Analyzing"
+      label="Generate"
+    ></app-button>
   </div>
   @if(phishingAnalyseState === PhishingAnalyseState.Analyzed) {
-    <section class="flex flex-col mb-4">
-      <label id="lbl">
-        @for(line of getResponse(); track line) {
-          <br>{{line}}
-        }
-      </label>
-    </section>
+  <section class="flex flex-col mb-4">
+    <label id="lbl">
+      @for(line of getResponse(); track line) {
+      <br />{{ line }}
+      }
+    </label>
+  </section>
   } @else if (phishingAnalyseState === PhishingAnalyseState.Analyzing) {
-    <div class="w-20 h-20 rounded-[50%] loader mx-auto mt-8">
-
-    </div>
+  <div class="w-20 h-20 rounded-[50%] loader mx-auto mt-8"></div>
   }
-
 </div>

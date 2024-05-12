@@ -1,134 +1,152 @@
 <div>
-  <h1 class="text-3xl text-center">Phishing Detector</h1>
-  <button class="w-48 bg-amber-600 rounded mt-1 mb-4" (click)="switchMode()" [disabled]="phishingAnalyseState === PhishingAnalyseState.Analyzing">
-    @if(mode === PhishingAnalyseMode.File) {
-      Enter the information
-    } @else {
-      Upload a .eml file
-    }
-  </button>
-  @if (mode === PhishingAnalyseMode.Manual) {
-    <section class="flex flex-col mb-8">
-      <label class="text-2xl">
-        Sender
-      </label>
-      <div class="w-full h-8 flex flex-row">
-        <app-input
-          type="email"
-          placeholder="Enter sender email here"
-          (onTextChanged)="from = $event"
-          class="w-full"
-        />
-      </div>
-    </section>
-    <section class="flex flex-col mb-8">
-      <label class="text-2xl">
-        Receiver
-      </label>
-      <div class="w-full h-8 flex flex-row">
-        <app-input
-          type="email"
-          placeholder="Enter receiver email here"
-          (onTextChanged)="to = $event"
-          class="w-full"
-        />
-      </div>
-    </section>
-    <section class="flex flex-col mb-8">
-      <label class="text-2xl">
-        Subject
-      </label>
-      <div class="w-full h-8 flex flex-row">
-        <app-input
-          type="text"
-          placeholder="Enter Subject"
-          (onTextChanged)="subject = $event"
-          class="w-full"
-        />
-      </div>
-    </section>
-    <section class="flex flex-col mb-8">
-      <label class="text-2xl">
-        Email
-      </label>
-      <div class="w-full flex flex-row">
-        <app-input
-          type="multiline"
-          placeholder="Enter email content here"
-          (onTextChanged)="body = $event"
-          class="w-full"
-        />
-      </div>
-    </section>
-  }@else {
-    <section class="flex flex-col mb-8">
-      <label class="text-2xl">
-        Upload a .eml file
-      </label>
-      <input #annoying type="file" [(ngModel)]="file" accept=".eml" />
-    </section>
-  }
-  <div class="flex flex-row">
-    <button (click)="detectPhishing()" class="w-full bg-amber-600 rounded mt-1 h-10" [disabled]="phishingAnalyseState === PhishingAnalyseState.Analyzing">
-      Run the analysis
-    </button>
+  <h1 class="text-center">Phishing Detector</h1>
+  <div class="w-fit flex flex-row items-center mt-8 mb-4 select-none">
+    <label class="switch">
+      <input
+        type="checkbox"
+        (click)="switchMode()"
+        [checked]="mode == PhishingAnalyseMode.File"
+      />
+      <span class="slider round"></span>
+    </label>
+    <span class="h-fit ml-2">Upload a .eml file</span>
   </div>
 
-  @if(phishingAnalyseState == PhishingAnalyseState.Analyzed){
-    @if (fileError.length == 0) {
-   
-    <section class="flex flex-col mt-10">
-      <h2 class="text-2xl">GPT index</h2>
+  <div class="h-6"></div>
 
-      <div class="flex flex-row">
-        <div class="w-1/2">
-          Likely safe
-        </div>
-        <div class="w-1/2 text-right">
-          Likely phishing
-        </div>
+  @if (mode === PhishingAnalyseMode.Manual) {
+  <section class="flex flex-col mb-8">
+    <div class="w-full h-8 flex flex-row">
+      <app-input
+        label="Sender"
+        type="email"
+        placeholder="Enter sender email here"
+        (onTextChanged)="from = $event"
+        class="w-full"
+      />
+    </div>
+  </section>
+
+  <div class="h-6"></div>
+
+  <section class="flex flex-col mb-8">
+    <div class="w-full h-8 flex flex-row">
+      <app-input
+        label="Receiver"
+        type="email"
+        placeholder="Enter receiver email here"
+        (onTextChanged)="to = $event"
+        class="w-full"
+      />
+    </div>
+  </section>
+
+  <div class="h-6"></div>
+
+  <section class="flex flex-col mb-8">
+    <div class="w-full h-8 flex flex-row">
+      <app-input
+        label="Subject"
+        type="text"
+        placeholder="Enter Subject"
+        (onTextChanged)="subject = $event"
+        class="w-full"
+      />
+    </div>
+  </section>
+
+  <div class="h-6"></div>
+
+  <section class="flex flex-col">
+    <div class="w-full flex flex-row">
+      <app-input
+        label="Email"
+        type="multiline"
+        placeholder="Enter email content here"
+        (onTextChanged)="body = $event"
+        class="w-full"
+      />
+    </div>
+  </section>
+  }@else {
+  <section class="flex flex-col">
+    <!-- <label class="" for="annoyingaf"> Upload a .eml file </label> -->
+    <input
+      #annoying
+      id="annoyingaf"
+      type="file"
+      [(ngModel)]="file"
+      accept=".eml"
+    />
+    <!-- hidden
+      onchange="onFileChanged($event.target.files[0].name)" -->
+    <!-- <span class=""
+      >@if(currentFileName){ currentFileName }@else{ No file selected }</span
+    > -->
+  </section>
+  }
+  <div class="flex flex-row">
+    <app-button
+      (click)="detectPhishing()"
+      class="w-96 mx-auto"
+      [disabled]="phishingAnalyseState === PhishingAnalyseState.Analyzing"
+      label="Run the analysis"
+    ></app-button>
+  </div>
+
+  @if(phishingAnalyseState == PhishingAnalyseState.Analyzed){ @if
+  (fileError.length == 0) {
+
+  <section class="flex flex-col mt-10">
+    <h2 class="text-2xl">GPT index</h2>
+
+    <div class="flex flex-row">
+      <div class="w-1/2">Likely safe</div>
+      <div class="w-1/2 text-right">Likely phishing</div>
+    </div>
+    <div class="flex flex-row h-4" #gradiant>
+      <span
+        class="bg-gradient-to-r from-emerald-950 to-emerald-600 h-4 w-1/3 rounded-l"
+      ></span>
+      <span
+        class="bg-gradient-to-r from-emerald-600 to-amber-600 h-4 w-1/3"
+      ></span>
+      <span
+        class="bg-gradient-to-r from-amber-600 to-orange-950 h-4 w-1/3 rounded-r"
+      ></span>
+    </div>
+    <div class="overflow-hidden h-4 mt-1">
+      @if(transform) {
+      <div class="w-full" [ngClass]="transform">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 384 512"
+          class="w-4 h-4 fill-gray-100"
+        >
+          <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path
+            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+          />
+        </svg>
       </div>
-      <div class="flex flex-row h-4" #gradiant>
-        <span class="bg-gradient-to-r from-emerald-950 to-emerald-600 h-4 w-1/3 rounded-l"></span>
-        <span class="bg-gradient-to-r from-emerald-600 to-amber-600 h-4 w-1/3"></span>
-        <span class="bg-gradient-to-r from-amber-600 to-orange-950 h-4 w-1/3 rounded-r"></span>
-      </div>
-      <div class="overflow-hidden h-4 mt-1">
-        @if(transform) {
-          <div
-            class="w-full"
-            [ngClass]="transform"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 384 512"
-              class="w-4 h-4 fill-gray-100"
-            ><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-              <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
-            </svg>
-          </div>
-        }
-      </div>
-    </section>
-      <div>
-        <h1 class="text-3xl">Reasoning:</h1>
-        @for(item of getResReasoning();track item){
-          <div class="flex flex-row ">
-            <br/>{{item}}
-          </div>
-        }
-      </div>
+      }
+    </div>
+  </section>
+  <div>
+    <h1 class="text-3xl">Reasoning:</h1>
+    @for(item of getResReasoning();track item){
+    <div class="flex flex-row"><br />{{ item }}</div>
     }
-  } @else if (phishingAnalyseState == PhishingAnalyseState.Analyzing){
-    <div class="w-20 h-20 rounded-[50%] loader mx-auto mt-8">
-
-    </div>
+  </div>
+  } } @else if (phishingAnalyseState == PhishingAnalyseState.Analyzing){
+  <div class="w-20 h-20 rounded-[50%] loader mx-auto mt-8"></div>
+  } @if(fileError.length > 0){
+  <div class="">
+    <h1 class="text-4xl text-center">{{ fileError }}</h1>
+    <h1 class="text-2xl text-center">
+      An error might indicate that the email is a scam and precautions should be
+      taken.
+    </h1>
+  </div>
   }
-  @if(fileError.length > 0){
-    <div class="">
-      <h1 class="text-4xl text-center">{{fileError}}</h1>
-      <h1 class="text-2xl text-center">An error might indicate that the email is a scam and precautions should be taken.</h1>
-    </div>
-  }
-
 </div>

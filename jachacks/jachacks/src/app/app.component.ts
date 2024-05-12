@@ -6,7 +6,7 @@ import { ChatGPTService } from './services/chatgpt/chat-gpt.service';
 
 enum Routes {
   HOME = '',
-  PASSWORD = 'password',
+  PASSWORD = 'password-checker',
   DETECT_PHISHING = 'phishing/detect',
   CREATE_PHISHING = 'phishing/create',
   CODE = 'code',

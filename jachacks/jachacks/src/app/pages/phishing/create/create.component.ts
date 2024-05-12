@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PhishingGeneratorService } from '../../../services/phishing/phishing-generator.service';
 
 @Component({
   selector: 'app-phishing-create',
@@ -8,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './create.component.scss'
 })
 export class PhishingCreateComponent {
+  constructor(private phishingGenerateService:PhishingGeneratorService) { 
+  }
+
+  click = () => {
+    this.phishingGenerateService.sendGPTRequest("");
+  }
 
 }

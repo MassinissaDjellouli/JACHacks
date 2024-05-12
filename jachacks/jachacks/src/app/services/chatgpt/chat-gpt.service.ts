@@ -10,13 +10,23 @@ export class ChatGPTService {
 
   constructor(private reqService:RequestsService) {
   }
-
+  private hashCode = (s:string):number => {
+    let hash = s.split("").reduce(function(a, b) {
+      a = ((a << 5) - a) + b.charCodeAt(0);
+      return a & a;
+    }, 0);
+    console.log(hash);
+    return hash;
+  }
+   
   public sendPrompt = async (prompt:string): Promise<string> => {
     const delimiter="=";
     const answerFormat = "answer" + delimiter + "ANSWER"
+    
     const res = await this.reqService.post<ChatGPTResponse>("https://api.openai.com/v1/chat/completions",{
       model:"gpt-3.5-turbo",
       temperature:0.2,
+      seed:this.hashCode(prompt),
       messages:[
         {
           role:"system",
@@ -40,6 +50,8 @@ export class ChatGPTService {
   public sendPromptSemiRaw = async (prompt:string, delimiter:string="=",answerFormat:string="answer"+delimiter+"ANSWER"): Promise<string[]> => {
     const res = await this.reqService.post<ChatGPTResponse>("https://api.openai.com/v1/chat/completions",{
       model:"gpt-3.5-turbo",
+      temperature:0.2,
+      seed:this.hashCode(prompt),
       messages:[
         {
           role:"system",
@@ -52,7 +64,6 @@ export class ChatGPTService {
       ]
     },`Bearer ${environment.API_KEY}`);
     let msg = res.choices[0].message.content;
-    console.log(msg);
     
     return msg.split(delimiter);
 }
@@ -61,6 +72,8 @@ export class ChatGPTService {
   public sendPromptRaw = async (prompt:string, delimiter:string="=",answerFormat:string="answer"+delimiter+"ANSWER"): Promise<ChatGPTResponse> => {
     return await this.reqService.post<ChatGPTResponse>("https://api.openai.com/v1/chat/completions",{
       model:"gpt-3.5-turbo",
+      temperature:0.1,
+      seed:this.hashCode(prompt),
       messages:[
         {
           role:"system",

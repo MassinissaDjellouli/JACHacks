@@ -11,6 +11,7 @@ enum Routes {
   DETECT_PHISHING = 'phishing/detect',
   CREATE_PHISHING = 'phishing/create',
   CODE_ANALYZER = 'code-analyzer',
+  REPORT_GENERATOR = 'report-generator',
 }
 
 @Component({

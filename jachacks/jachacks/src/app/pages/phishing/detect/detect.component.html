@@ -1,1 +1,54 @@
-<button (click)="click()">test</button>
+<div>
+    <h1 class="text-3xl text-center">Phishing Detector</h1>
+    <button class="w-48 bg-amber-600 rounded mt-1" (click)="switchMode()">{{getMode() == 1 ? "Upload a .eml file":"Enter the information"}}</button>
+    @if (getMode() == 1) {
+
+    <section class="flex flex-col mx-10 mb-4">
+        <label>
+            Sender
+        </label>
+        <div class="w-full h-8 flex flex-row">
+            <app-input type="email" placeholder="Enter sender email here" (onTextChanged)="from = $event"
+                class="w-full" />
+        </div>
+    </section>
+    <section class="flex flex-col mx-10 mb-4">
+        <label>
+            Receiver
+        </label>
+        <div class="w-full h-8 flex flex-row">
+            <app-input type="email" placeholder="Enter receiver email here" (onTextChanged)="to = $event"
+                class="w-full" />
+        </div>
+    </section>
+    <section class="flex flex-col mx-10 mb-4">
+        <label>
+            Subject
+        </label>
+        <div class="w-full h-8 flex flex-row">
+            <app-input type="text" placeholder="Enter Subject" (onTextChanged)="subject = $event" class="w-full" />
+        </div>
+    </section>
+    <section class="flex flex-col mx-10 mb-4">
+        <label>
+            Email
+        </label>
+        <div class="w-full flex flex-row">
+            <app-input type="multiline" placeholder="Enter email content here" (onTextChanged)="body = $event"
+                class="w-full" />
+        </div>
+    </section>
+    }@else {
+    <section class="flex flex-col mx-10 mb-4">
+        <label>
+            Upload a .eml file
+        </label>
+        <input type="file" [(ngModel)]="file" accept=".eml" />
+    </section>
+    }
+    <div class="flex flex-row">
+        <button (click)="detectPhishing()" class="w-48 bg-amber-600 rounded mt-1">
+            Run the analysis
+        </button>
+    </div>
+</div>

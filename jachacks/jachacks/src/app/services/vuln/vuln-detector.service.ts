@@ -13,7 +13,6 @@ export class VulnDetectorService {
   //'If your answer is longer than one paragraph, add a TL;DR at the end of your response to summarize the response.\n';
 
   async detectVulnerabilities(code: string,depth = 0): Promise<string> {
-    console.log('Detecting vulnerabilities in code: ', code);
     const response = await this.chatGPTService.sendPrompt(
       this.basePrompt + '\nCode : \n' + code
     );

@@ -27,7 +27,7 @@
       </div>
     </section>
     <div class="flex flex-row">
-      <button (click)="click()" class="w-48 bg-amber-600 rounded mt-1">
+      <button (click)="click()" [disabled]="reportGenerateState === ReportGenerateState.Generating" class="w-48 bg-amber-600 rounded mt-1">
         Generate
       </button>
     </div>

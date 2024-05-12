@@ -21,10 +21,12 @@ export class RandomtipComponent {
   public getRandomTip(): string {
     return this.randomTip;
   }
-
+  private activeBtn = true;
+  isActiveBtn = () => this.activeBtn; 
   public generateRandomTip = async () => {
-
+    this.activeBtn = false;
     this.randomTip = (await this.chatGPTService.sendPrompt("Give me an advanced cybersecurity tip under 40 words for a " + (Math.random() > 0.5 ?"Red":"Blue") + " team cybersecurity expert about " + this.getRandomCategory(),false,1)).replace("ANSWER: ","");
+    this.activeBtn = true;
   } 
 
   private getRandomCategory = ():string => {

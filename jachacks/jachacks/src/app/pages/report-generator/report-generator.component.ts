@@ -22,6 +22,8 @@ export class ReportGeneratorComponent {
 
   click = () => {
     this.reportGenerateState = ReportGenerateState.Generating;
+    console.log(this.reportGenerateState);
+    
     this.request().then(() => {
       this.reportGenerateState = ReportGenerateState.Generated;
     });
